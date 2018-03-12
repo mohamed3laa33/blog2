@@ -1,0 +1,18 @@
+<h1>Editing Comment</h1>
+<%= @post.title %>
+<% if user_signed_in? %>
+  <%= form_with(model: [ @post, @post.comments.build ], url: post_comment_path, :method => :patch, local: true) do |form| %>
+    </p>
+      <%= form.label :comment %><br>
+      <%= form.text_area :body, :value => @comment.body %>
+    </p>
+    <p>
+    <%= form.submit "Confirm edit"%>
+    </p>
+  <% end %>
+<% else %>
+  <%=  "YOU ARE NOT A USER"%>
+<% end %>
+</br><%= link_to 'Back', @post %>
+
+

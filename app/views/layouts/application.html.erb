@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag  'bootstrap_2', media: 'all', 'data-turbolinks-track': 'reload'  %>
+    <%= stylesheet_link_tag  'bootstrap_3', media: 'all', 'data-turbolinks-track': 'reload'  %>
+    <%= stylesheet_link_tag    'bootstrap', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <nav>
+          <ul class="nav nav-tabs"">
+            
+            <% if user_signed_in? %>
+            <li><%=link_to  "Hello  #{current_user.name}"%></li>
+            <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+            <% else %>
+              <li><%= link_to('Login', new_user_session_path) %></li> 
+              <li><%= link_to('Sign Up', new_user_registration_path) %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+      <!--Footer-->
+<footer class="page-footer font-small blue pt-4 mt-4" style="background:#e5e5e5;">
+
+    <!--Footer Links-->
+    <div class="container-fluid text-center text-md-left">
+        <div class="row">
+
+            <!--First column-->
+            <div class="col-md-12 text-center">
+                <h5 class="text-uppercase">Hello Blogging</h5>
+                <p>This is simple blog app by Mohamed Alaa</p>
+            </div>
+            <!--/.First column-->
+        </div>
+    </div>
+    <!--/.Footer Links-->
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3 text-center">
+        © Mohamed Alaa
+    </div>
+    <!--/.Copyright-->
+
+</footer>
+<!--/.Footer-->
+                      
+                 
+    </div>      
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'javascript', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'javascript_2', 'data-turbolinks-track': 'reload' %>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<%= form_with(model: [ @post, @post.comments.build ], local: true) do |form| %>
+
+  <% if !user_signed_in? %>
+    <p>
+      <%= form.label :name %><br>
+      <%= form.text_field :commenter %>
+    </p>
+    <p>
+  <% else %>
+    <%= form.hidden_field 'commenter', value: current_user.name %>
+    <%= form.hidden_field 'user_id', value: current_user.id %>
+  <% end %>
+    <%= form.label :comment %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

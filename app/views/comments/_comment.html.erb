@@ -1,0 +1,19 @@
+<p>
+  <strong>Name:</strong>
+  <%= comment.commenter %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= comment.body %>
+</p>
+<% if user_signed_in? %>
+  <% if @post.user_id==current_user.id or comment.user_id==current_user.id %>
+    <p>
+      <%= link_to 'Edit', edit_post_comment_path(@post, comment) %>
+      <%= link_to 'Delete', [comment.post, comment],
+                   method: :delete,
+                   data: { confirm: 'Are you sure?' } %>
+    </p>
+  <% end %>
+<% end %>
